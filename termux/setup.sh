@@ -2,11 +2,33 @@
 
 REPO="$(pwd)"
 
+banner() {
+    clear
+    echo " "
+    echo "╔═══════════════════════════════════╗"
+    echo "║        Termux Setup Script        ║"
+    echo "╚═══════════════════════════════════╝"
+    echo ""
+    echo "do you want to continue(Y/n)"
+    read -r value
+    if [[ "$value" = "n" ]]; then
+        echo "Aborting setup"
+        exit 0
+    elif [[ "$value" = "y" || "$value" = "Y" ]]
+        echo "Starting setup..."
+    else
+        echo "Invalid input. Aborting."
+        exit 1
+    fi
+}
+
 # install essentinal package
 Install_pkg() {
     echo "updating package"
-    pkg update && pkg upgrade -y
-    pkg install git curl wget vim nano htop zsh lazygit tmux zsh -y
+    pkg update -y && pkg upgrade -y
+
+    echo "Installing essential packages..."
+    pkg install -y git curl wget vim nano htop zsh lazygit tmux python neovim
 }
 
 # Local bin in bash
@@ -37,10 +59,20 @@ Copy_file() {
     echo "copied tmux and zshrc "
 }
 
+Set_zsh() {
+    if [ "$SHELL" != "$(command -v zsh)" ]; then
+        echo "Setting zsh as default shell..."
+        chsh -s "$(command -v zsh)" || echo " Unable to change shell (Termux may not support chsh)"
+    fi
+}
+
 Main() {
     Install_pkg
     Access_termux
     Bash_bin
     Install_zsh
     Copy_file
+    Set_zsh
 }
+
+Main
