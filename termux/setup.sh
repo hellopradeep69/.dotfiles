@@ -29,12 +29,12 @@ Install_pkg() {
     pkg update -y && pkg upgrade -y
 
     echo "Installing essential packages..."
-    pkg install -y git curl wget vim nano htop zsh lazygit tmux python neovim iproute2
+    pkg install -y git curl wget vim nano htop zsh lazygit tmux python neovim iproute2 fzf
 }
 
 # Local bin in bash
 Bash_bin() {
-    "making sure your local bin has permission to do"
+    echo "making sure your local bin has permission to do"
     mkdir -p ~/.local/bin
     echo 'export PATH="$HOME/.local/bin:$PATH"' >>~/.bashrc
     echo " Added ~/.local/bin to PATH in .bashrc"
@@ -50,7 +50,6 @@ Access_termux() {
 
 #do you wanna use zsh
 Install_zsh() {
-    # sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
@@ -58,13 +57,6 @@ Copy_file() {
     cp -r "$REPO/.tmux.conf" "$HOME/."
     cp -r "$REPO/.zshrc" "$HOME/."
     echo "copied tmux and zshrc "
-}
-
-Set_zsh() {
-    if [ "$SHELL" != "$(command -v zsh)" ]; then
-        echo "Setting zsh as default shell..."
-        chsh -s "$(command -v zsh)" || echo " Unable to change shell (Termux may not support chsh)"
-    fi
 }
 
 Set_zsh() {
