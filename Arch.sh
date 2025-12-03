@@ -2,16 +2,19 @@
 # My development setup for linux Arch
 
 Install_pack() {
-    sudo pacman -Syu
-    sudo pacman -S --noconfirm fastfetch ghostty fd ripgrep tmux zsh btop curl wget trash-cli gcc nodejs npm
+    echo "Installing variour package fastfetch ghostty fd ripgrep tmux zsh btop curl wget trash-cli gcc nodejs npm "
+    sudo pacman -S --noconfirm --needed fastfetch ghostty fd ripgrep tmux zsh \
+        btop curl wget trash-cli gcc nodejs npm wl-clipboard cliphist grim
 }
 
 Install_font() {
-    sudo pacman -S --noconfirm ttf-jetbrains-mono-nerd ttf-terminus-nerd ttf-jetbrains-mono
+    echo "Installing font"
+    sudo pacman -S --noconfirm --needed ttf-jetbrains-mono-nerd ttf-terminus-nerd ttf-jetbrains-mono
     fc-cache -f -v
 }
 
 Install_zplugin() {
+    echo "Installin zsh plugin"
 
     # Create the directory if missing
     mkdir -p ~/.oh-my-zsh/custom/plugins
@@ -44,17 +47,22 @@ Zsh_setup() {
         Install_zplugin
     fi
 
-    trash $HOME/.zshrc
-    cp -r $HOME/dev/.zshrc $HOME/.zshrc
+    echo "Reinstalling zsh and zsh conf"
+    [[ -f "$HOME/.zshrc" ]] && trash "$HOME/.zshrc"
+    cp -r "$HOME/dev/.zshrc" "$HOME/.zshrc"
 
 }
 
 Tmux_in() {
-    trash $HOME/.tmux.conf
-    cp -r $HOME/dev/.tmux.conf $HOME/.tmux.conf
+    echo ""
+    echo "Reinstalling tmux and tmux conf"
+    [[ -f "$HOME/.tmux.conf" ]] && trash "$HOME/.tmux.conf"
+    cp -r "$HOME/dev/.tmux.conf" "$HOME/.tmux.conf"
 }
 
 Nvim_setup() {
+    echo ""
+    echo "Nvim setuping.."
     rm -rf ~/.config/nvim
     mkdir -p ~/.config/nvim
     git clone https://github.com/hellopradeep69/nvim.git ~/.config/nvim/
@@ -63,6 +71,7 @@ Nvim_setup() {
 }
 
 Ghostty_setup() {
+    echo ""
     echo "Resetting ghostty config"
     rm -rf ~/.config/ghostty
     mkdir -p ~/.config/ghostty
@@ -76,5 +85,11 @@ Main() {
     Tmux_in
     Nvim_setup
     Zsh_setup
-
+    echo ""
+    echo "Basic Setup done"
 }
+
+Main
+
+echo ""
+echo "Now You can proudly say I use arch btw"

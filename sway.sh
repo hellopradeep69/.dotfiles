@@ -3,7 +3,7 @@
 
 Install_sway() {
     sudo pacman -Syu
-    sudo pacman -S sway swaylock i3status rofi-wayland brightnessctl mako wl-clipboard cliphist
+    sudo pacman -S sway swaylock i3status rofi-wayland brightnessctl mako
 }
 
 Make_dir() {

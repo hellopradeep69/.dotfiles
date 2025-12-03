@@ -1,4 +1,0 @@
-things to backup
-
-ghostty
-nvim
