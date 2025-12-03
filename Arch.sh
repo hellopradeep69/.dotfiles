@@ -42,6 +42,7 @@ Zsh_setup(){
         echo "Downloading oh my zsh"
         # sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
         Install_zplugin
+
     fi
 
     trash $HOME/.zshrc
