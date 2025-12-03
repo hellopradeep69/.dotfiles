@@ -3,7 +3,7 @@
 
 Install_pack(){
     sudo pacman -Syu
-    sudo pacman -S --noconfirm fastfetch ghostty fd ripgrep tmux zsh btop curl wget trash-cli
+    sudo pacman -S --noconfirm fastfetch ghostty fd ripgrep tmux zsh btop curl wget trash-cli gcc
 }
 
 Install_font(){
@@ -42,7 +42,6 @@ Zsh_setup(){
         echo "Downloading oh my zsh"
         # sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
         Install_zplugin
-
     fi
 
     trash $HOME/.zshrc
@@ -65,9 +64,15 @@ Ghostty_setup(){
     cp -r $HOME/dev/resource/ghostty/config ~/.config/ghostty/
 }
 
+Install_sway(){
+    sudo pacman -Syu
+    sudo pacman -S sway swaylock i3status rofi-wayland brightnessctl mako wl-clipboard cliphist
+}
+
 # Ghostty_setup
 # Install_font
-# Install_pack
+Install_pack
+Install_sway
 # Nvim_setup
 # Zsh_setup
 
