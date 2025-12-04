@@ -3,7 +3,7 @@
 
 Install_sway() {
     # sudo pacman -Syu
-    sudo pacman -S --noconfirm --needed sway swaylock i3status rofi-wayland brightnessctl mako slurp
+    sudo pacman -S --noconfirm --needed sway swaylock i3status rofi-wayland brightnessctl mako slurp swaybg
 }
 
 Make_dir() {
