@@ -6,3 +6,5 @@ things to backup | Raw file will show the detail
 <!-- i3blocks -->
 <!-- tmux -->
 <!-- zsh -->
+<!-- hyprland -->
+<!-- waybar -->

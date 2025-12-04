@@ -1,6 +1,8 @@
 #!/bin/bash
 # My development setup for linux Arch
 
+Options=$1
+
 Install_pack() {
     echo "Installing variour package fastfetch ghostty fd ripgrep tmux zsh btop curl wget trash-cli gcc nodejs npm "
     sudo pacman -S --noconfirm --needed fastfetch ghostty fd ripgrep tmux zsh \
@@ -100,7 +102,23 @@ Main() {
     echo "Basic Setup done"
 }
 
-Main
+case "$Options" in
+-help)
+    echo "Usage:"
+    echo "./Arch.sh -hyprland        to install hyprland and config"
+    echo "./Arch.sh -sway            to install hyprland and config"
+    ;;
+-hyprland)
+    bash $HOME/dev/hyprland.sh
+    ;;
+-sway)
+    $HOME/dev/sway.sh
+    ;;
+*)
+    Main
+    echo "-help for info on installing hyprland and sway "
+    ;;
+esac
 
 echo ""
 echo "Now You can proudly say I use arch btw"

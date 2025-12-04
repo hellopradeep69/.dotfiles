@@ -18,6 +18,7 @@ set $menu rofi -show drun
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# output  eDP-1 bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
@@ -224,21 +225,25 @@ bar {
 
 include /etc/sway/config.d/*
 
+# Exec
+exec --no-startup-id wl-paste --watch cliphist store
+
 #no title bar
 default_border pixel 1
 default_floating_border  pixel 1
 
 # keybind
 bindsym Menu exec cliphist list | rofi -dmenu | cliphist decode | wl-copy
+bindsym Shift+Print exec  grim -g "$(slurp)"
 
 # Assign
 assign [app_id="org.telegram.desktop"] 10
 assign [app_id="zen"] 2
-assign [app_id="vlc"] 4
-assign [app_id="dev.zed.Zed"] 3
+assign [class="vlc"] 4
+assign [class="dev.zed.Zed"] 3
 
 # no focus
-no_focus [app_id="dev.zed.Zed"]
+no_focus [class="dev.zed.Zed"]
 no_focus [app_id="org.telegram.desktop"]
 
 # Floating
