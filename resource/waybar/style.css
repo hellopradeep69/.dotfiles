@@ -1,8 +1,9 @@
 * {
     font-family: "Terminess Nerd Font Mono", monospace;
     font-size: 15px;
+    background-color: transparent;
 }
 
 #workspaces button.active {
-    background-color: darkgray;
+    background-color: darkslateblue;
 }

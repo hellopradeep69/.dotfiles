@@ -2,7 +2,7 @@
 
 Install_hypr() {
     echo "Installing hyprland waybar"
-    sudo pacman -S --noconfirm --needed hyprland waybar
+    sudo pacman -S --noconfirm --needed hyprland waybar swaybg
 }
 
 Config_hypr() {
